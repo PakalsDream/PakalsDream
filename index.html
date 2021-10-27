@@ -5,27 +5,107 @@
 <title>Pakals Dream</title>
 <meta name="generator" content="WYSIWYG Web Builder 17 Trial Version - https://www.wysiwygwebbuilder.com">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300&display=swap" rel="stylesheet">
 <link href="css/Pakals.css" rel="stylesheet">
 <link href="css/index.css" rel="stylesheet">
 <script src="jquery-1.12.4.min.js"></script>
 <script src="wb.parallax.min.js"></script>
+<script src="util.min.js"></script>
+<script src="scrollspy.min.js"></script>
+<script src="jquery.ui.effect.min.js"></script>
+<script src="wwb17.min.js"></script>
 <script>
 $(document).ready(function()
 {
-   $('#wb_LayoutGrid1').parallax();
+   $('#wb_Text1').addClass('visibility-hidden');
+   $('#wb_Image1').addClass('visibility-hidden');
+   $("a[href*='#Landing_Page']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_Landing_Page').offset().top }, 600, 'linear');
+   });
+   $('#wb_Landing_Page').parallax();
+   $("a[href*='#LayoutGrid2']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_LayoutGrid2').offset().top }, 600, 'linear');
+   });
    $("#wb_ResponsiveMenu1 ul li a").click(function(event)
    {
       $("#wb_ResponsiveMenu1 input").prop("checked", false);
    });
+   function onScrollText1()
+   {
+      var $obj = $("#wb_Text1");
+      if (!$obj.hasClass("in-viewport") && $obj.inViewPort(true))
+      {
+         $obj.addClass("in-viewport");
+         AnimateCss('wb_Text1', 'animate-fade-in', 0, 1250);
+      }
+      else
+      if ($obj.hasClass("in-viewport") && !$obj.inViewPort(true))
+      {
+         $obj.removeClass("in-viewport");
+         AnimateCss('wb_Text1', 'animate-fade-out', 0, 0);
+      }
+   }
+   if (!$('#wb_Text1').inViewPort(true))
+   {
+      $('#wb_Text1').addClass("in-viewport");
+   }
+   onScrollText1();
+   $(window).scroll(function(event)
+   {
+      onScrollText1();
+   });
+   function onScrollImage1()
+   {
+      var $obj = $("#wb_Image1");
+      if (!$obj.hasClass("in-viewport") && $obj.inViewPort(true))
+      {
+         $obj.addClass("in-viewport");
+         AnimateCss('wb_Image1', 'animate-fade-in', 0, 1250);
+      }
+      else
+      if ($obj.hasClass("in-viewport") && !$obj.inViewPort(true))
+      {
+         $obj.removeClass("in-viewport");
+         AnimateCss('wb_Image1', 'animate-fade-out', 0, 0);
+      }
+   }
+   if (!$('#wb_Image1').inViewPort(true))
+   {
+      $('#wb_Image1').addClass("in-viewport");
+   }
+   onScrollImage1();
+   $(window).scroll(function(event)
+   {
+      onScrollImage1();
+   });
+   $("a[href*='#CardContainer1']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#CardContainer1').offset().top }, 600, 'linear');
+   });
+   $("a[href*='#Gallery']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_Gallery').offset().top }, 600, 'linear');
+   });
+   $('#wb_Gallery').parallax();
+   $("a[href*='#contact']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_contact').offset().top-80 }, 600, 'easeInQuad');
+   });
 });
 </script>
 </head>
-<body>
-<a href="https://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb17.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250" width="16" height="16"></a>
-<div id="wb_LayoutGrid1">
-<div id="LayoutGrid1-overlay"></div>
-<div id="LayoutGrid1">
+<body data-spy="scroll">
+<div id="wb_Landing_Page">
+<div id="Landing_Page-overlay"></div>
+<div id="Landing_Page">
 <div class="col-1">
 <div id="wb_LayoutGrid2">
 <div id="LayoutGrid2">
@@ -45,11 +125,11 @@ $(document).ready(function()
 <div id="wb_ResponsiveMenu1">
 <label class="toggle" for="ResponsiveMenu1-submenu" id="ResponsiveMenu1-title">Menu<span id="ResponsiveMenu1-icon"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span></label>
 <input type="checkbox" id="ResponsiveMenu1-submenu">
-<ul class="ResponsiveMenu1" id="ResponsiveMenu1" role="menu">
-<li role="menuitem"><a href="./index.html" class="active">Home</a></li>
-<li role="menuitem"><a href="">Products</a></li>
-<li role="menuitem"><a href="">Gallery</a></li>
-<li role="menuitem"><a href="">About</a></li>
+<ul class="nav ResponsiveMenu1" id="ResponsiveMenu1" role="menu">
+<li class="nav" role="menuitem"><a href="./index.html#Landing_Page" class="nav-link">Home</a></li>
+<li class="nav" role="menuitem"><a href="./index.html#CardContainer1" class="nav-link">Products</a></li>
+<li class="nav" role="menuitem"><a href="#Gallery" class="nav-link">Gallery</a></li>
+<li class="nav" role="menuitem"><a href="./index.html#contact" class="nav-link">About</a></li>
 </ul>
 
 </div>
@@ -67,8 +147,108 @@ $(document).ready(function()
 <span style="color:#FFFFFF;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu</span>
 </div>
 </div>
+<div id="wb_Shape1">
+<a href="./index.html#Gallery"><div id="Shape1"><div id="Shape1_text"><div><span style="color:#000000;font-family:'Roboto Condensed';font-size:15px;line-height:2px;">Watch Video</span></div></div></div></a>
+</div>
+<div id="wb_Shape2">
+<a href="./index.html#contact"><div id="Shape2"><div id="Shape2_text"><div><span style="color:#000000;font-family:'Roboto Condensed';font-size:15px;line-height:17px;">Contact Us<br></span></div></div></div></a>
+</div>
+<hr id="Line2">
 </div>
 </div>
+</div>
+<div id="wb_LayoutGrid3">
+<div id="LayoutGrid3-divider-top">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+<path class="divider-fill" style="opacity:0.33" d="M 473,67.3 C 269.1,155.6 209.9,36.616636 152.7,70.616636 66,122.41664 0,63.016636 0,63.016636 V 0 h 1000 v 59.7 c 0,0 -51.81843,27.426654 -84.61843,30.626654 C 882.58157,93.626654 842.3,76.7 829.3,66.9 806,49.6 745.3,8.7 694.9,4.7 644.5,0.7 492.4,59 473,67.3 Z" />
+<path class="divider-fill" style="opacity:0.66" d="M 717.08516,66.305009 C 671.58516,66.305009 656.8,44.1 604.9,28.2 576.3,19.5 462.89159,13.125046 359.19159,62.325046 255.49159,111.52505 259.2,32.9 201.7,67.3 115.7,118.3 0,39.8 0,39.8 V 0 H 1000 V 36.5 C 1000,36.5 971.8,18 907.9,18 810.2,18.1 758.78516,66.305009 717.08516,66.305009 Z" />
+<path class="divider-fill" d="M 766.1,28.9 C 566.1,-28.6 500.1,94.4 371,48.4 242,1.8 242.33166,13.69159 185.13166,28.89159 128.33166,44.09159 132.3,44.9 89.9,52.5 28.6,63.7 0,0 0,0 h 1000 c 0,0 -9.9,40.9 -83.6,48.1 C 842.7,55.3 829.6,47 766.1,28.9 Z" />
+</svg>
+</div>
+<div id="LayoutGrid3">
+<div class="col-1">
+<div id="wb_Text4">
+<span style="color:#000000;">Our Products</span>
+</div>
+<hr id="Line3">
+</div>
+</div>
+</div>
+<div id="wb_CardContainer1">
+<div id="CardContainer1">
+<div id="wb_Card2" class="card">
+   <div id="Card2-card-body">
+      <div id="Card2-card-item0"><i class="fa fa-bolt"></i></div>
+      <div id="Card2-card-item1">Pakal's Drive<br></div>
+      <div id="Card2-card-item2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div id="Card2-card-item3">Read More</div>
+   </div>
+</div>
+<div id="wb_Card3" class="card">
+   <div id="Card3-card-body">
+      <div id="Card3-card-item0"><i class="fa fa-bed"></i></div>
+      <div id="Card3-card-item1">Pakal's Sleep<br></div>
+      <div id="Card3-card-item2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div id="Card3-card-item3">Read More</div>
+   </div>
+</div>
+<div id="wb_Card1" class="card">
+   <div id="Card1-card-body">
+      <div id="Card1-card-item0"><i class="fa fa-sun-o"></i></div>
+      <div id="Card1-card-item1">Pakal's Wake<br></div>
+      <div id="Card1-card-item2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div id="Card1-card-item3">Read More</div>
+   </div>
+</div>
+</div>
+</div>
+<div id="wb_Gallery">
+<div id="Gallery">
+<div class="col-1">
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid5">
+<div id="LayoutGrid5">
+<div class="row">
+<div class="col-1">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_contact">
+<div id="contact">
+<div class="row">
+<div class="col-1">
+<div id="wb_Heading10">
+<h1 id="Heading10">CONTACT US</h1>
+</div>
+<div id="wb_Shape3">
+<div id="Shape3"></div>
+</div>
+<div id="wb_Text16">
+<span style="color:#FFFFFF;font-family:Arial;font-size:37px;"><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. </em></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid6">
+<form name="Forma" method="post" action="contacto@pakalsdream.com.mx" enctype="text/plain" id="LayoutGrid6">
+<div class="col-1">
+<div id="wb_Text6">
+<div id="Text6-max-width">
+<span style="color:#FFFFFF;">1234 Address<br>Tepoztlán, Morelos<br>(123) 456-7890</span>
+</div>
+</div>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox2" name="name" value="" spellcheck="false" placeholder="Name">
+<input type="text" id="Editbox3" name="email" value="" spellcheck="false" placeholder="E-mail">
+<input type="text" id="Editbox1" name="message" value="" spellcheck="false" placeholder="Message">
+<input type="submit" id="Button1" name="" value="Send message">
+</div>
+</form>
 </div>
 </body>
 </html>
